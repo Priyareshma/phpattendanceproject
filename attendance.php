@@ -18,8 +18,7 @@ include('menu.php');
  $result=mysqli_query($conn,$query);
  foreach($result as $res)
  {
-     $email= $res['email'];
-         
+     $email= $res['email'];      
         echo ' <table class="table table-striped table-bordered" class="text-light">
         <thead><tr>
 <th>Employee Name</th>
@@ -30,7 +29,7 @@ include('menu.php');
 
             </tr>
             </thead> ';
- $sql= "select r.name,a.email,a.start_date,a.start_time,a.end_time from register r inner join attendance a on r.email=a.email where a.email='$email'";
+ $sql= "select r.name,a.email,a.start_date,a.start_time,a.end_time from register r inner join attendance a on r.email=a.email where a.email='$email' order by a.id desc";
  $result=mysqli_query($conn,$sql);
  while($row =mysqli_fetch_array($result))
      {
@@ -57,3 +56,20 @@ include('menu.php');
         $('table').DataTable();
      });
  </script>
+ <?php  
+ $myTime = strtotime("03/01/2022");  // Use whatever date format you want
+$daysInMonth = cal_days_in_month(CAL_GREGORIAN, 3, 2022); // 31
+$workDays = 0;
+
+while($daysInMonth > 0)
+{
+    $day = date("D", $myTime); // Sun - Sat
+    if($day != "Sun" && $day != "Sat")
+        $workDays++;
+
+    $daysInMonth--;
+    $myTime += 86400; // 86,400 seconds = 24 hrs.
+}
+
+echo "There are $workDays work days this month!";
+?>
