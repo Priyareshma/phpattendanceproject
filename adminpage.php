@@ -36,7 +36,7 @@
 <th>Employee Gender</th>
 <th>Employee Address</th>
 <th>Employee Phone Number</th>
-<!-- <td>Action</td> -->
+<th>View</th>
 
                 </tr>
                 </thead>
@@ -55,9 +55,10 @@ while($row = mysqli_fetch_array($result))
   <td>'.$row["gender"].'</td>
   <td>'.$row["address"].'</td>
   <td>'.$row["phone"].'</td>
+  
   ';
-  }
- ?>        
+ ?>  <td><input type="button" name="view" value="view" id="<?php echo $row["email"]; ?>" class="btn btn-info btn-xs view_data" /></td> 
+ <?php }?>     
             </table>
             </form>
     </body>
@@ -66,4 +67,46 @@ while($row = mysqli_fetch_array($result))
 $(document).ready(function(){
                   $('#table').DataTable();
     });
+</script>
+<html>
+    <head>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    </head>
+    <body>
+<div id="dataModal" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                     <h4 class="modal-title">More Information</h4>  
+                </div>  
+                <div class="modal-body" id="employee_detail">  
+                </div>  
+                <div class="modal-footer">  
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                </div>  
+           </div>  
+      </div>  
+ </div>  
+</body>
+</html>
+<script>
+    $(document).ready(function(){  
+        $(document).on('click', '.view_data', function(){  
+           var employee_email = $(this).attr("id");
+           console.log(employee_email);
+           if(employee_email != '')  
+           {  
+                $.ajax({  
+                     url:"select.php",  
+                     method:"POST",  
+                     data:{employee_email:employee_email},  
+                     success:function(data){  
+                          $('#employee_detail').html(data);  
+                          $('#dataModal').modal('show');  
+                     }  
+                });  
+           }            
+      });  
+    }); 
 </script>
