@@ -1,0 +1,23 @@
+<?php
+include('connection.php');
+if(isset($_POST['submit']))
+{
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $role=$_POST['role'];
+}
+$sql="Insert into register(name,email,password,role) values('$name','$email','$password','$role')";
+mysqli_query($conn,$sql);
+if($role=="Employee")
+{
+    $email;
+    header('location:employee_profile.php?email='.$email);
+    exit;
+}
+else
+{
+    header('location:index.php');
+    exit;
+}
+?>
