@@ -16,17 +16,14 @@ if(isset($_POST['submit']))
   $result=mysqli_query($conn,$sql);
   if($result)
   {
-    header('location:index.php');
+  header('location:index.php?message=success');
   }
-
 }
 ?>
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
 <section class="vh-100 gradient-custom">
   <div class="container py-5 h-100">
@@ -135,16 +132,4 @@ if(isset($_POST['submit']))
   </div>
 </section>
 </html>
-<script>
-$(document).ready(function(){
-  $('#register').click(function(){
-            swal({
-                  title: "User created!",
-                  text: "Suceess message sent!!",
-                  icon: "success",
-                  timer: 1000,
-                  });
-                }); 
-          }); 
-</script>
 

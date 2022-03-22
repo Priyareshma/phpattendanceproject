@@ -2,6 +2,10 @@
    if(!empty($_GET['status'])){
           echo '<center><div>You have been logged out and login again!!!</div></center>';
    }
+   if(!empty($_GET['message']))
+   {
+           echo '<center><div>User created successfully!!!</div></center>';
+   }
 ?>
 <html>
 <!-- icons  -->
