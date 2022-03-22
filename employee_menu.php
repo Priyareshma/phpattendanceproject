@@ -1,4 +1,19 @@
-
+<?php
+  session_start();  
+  if(isset($_SESSION["email"]))  
+    {  
+       if((time() - $_SESSION['last_login_timestamp']) > 300) 
+           {  
+               session_unset();
+               session_destroy(); 
+               header('location:index.php?status=loggedout');
+           }  
+     }
+           else  
+           { 
+               header('location:index.php?status=loggedout');  
+           }
+?>
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">

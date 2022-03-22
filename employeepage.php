@@ -132,7 +132,7 @@ $(document).ready(function(){
       });
       setTimeout(function(){
        location.reload();
-   },10000);
+   },5000);
       });
     });
 </script>

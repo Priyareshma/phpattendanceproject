@@ -1,16 +1,6 @@
 
 <?php
  include('menu.php');
-    //   session_start();  
-    //   if(isset($_SESSION["email"]))  
-    //   {  
-    //        if((time() - $_SESSION['last_login_timestamp']) > 60) // 900 = 15 * 60  
-    //        {  
-    //             header("location:logout.php");  
-    //        }  
-    //        else  
-    //        {  
-    //             $_SESSION['last_login_timestamp'] = time(); 
  ?>
 
 <html>
