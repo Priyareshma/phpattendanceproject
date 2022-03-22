@@ -23,7 +23,7 @@
         <h1><center>Login Form</center></h1>
         <p>Common Login form for all type of users </p>
 
-        <form class="flex-c" method="post" action="home.php" >
+        <form class="flex-c" method="post" action="home.php" id="form" >
           <div class="input-box">
             <span class="label">E-mail</span>
             <div class=" flex-r input">
@@ -47,7 +47,6 @@
             <a href="register.php">Sign Up</a>
           </span>
         </form>
-
       </div>
     </div>
   </div>
@@ -65,10 +64,14 @@ $(document).ready(function(){
             success:function(data)
             {
                 if(data==0)
-                    {  
+                    { 
+                       
                       $("#availability").html("<span class=text-danger><b>Wrong Credentials</b></span>");
                         $("#register").attr("disabled",true);
-                        
+                        $("#form")[0].reset();
+                        setTimeout(function(){
+                              location.reload();
+                             },1000);
                     }else if(data!=0)
                         {
                          $('#availability').html("<span class=text-success><b>Crendentials matched</b> </span>"); 
